@@ -16,16 +16,13 @@
       return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
 
-    function goBackAfterScan() {
-      if (document.referrer) {
-        window.location.href = document.referrer;
-      } else {
-        history.back();
-      }
+    function goToMainSite() {
+      window.location.href = "https://new1.tarhimcode.ir/";
     }
 
     if (!isMobile()) {
       alert("این قابلیت فقط در موبایل فعال است.");
+      goToMainSite();
     } else {
       const html5QrCode = new Html5Qrcode("reader");
       html5QrCode.start(
@@ -33,13 +30,14 @@
         { fps: 10, qrbox: 250 },
         (decodedText, decodedResult) => {
           alert(`نتیجه اسکن: ${decodedText}`);
-          html5QrCode.stop().then(goBackAfterScan);
+          html5QrCode.stop().then(goToMainSite);
         },
         (errorMessage) => {
           // خطاهای موقتی نادیده گرفته می‌شوند
         }
       ).catch((err) => {
         console.error("خطا در شروع اسکنر:", err);
+        goToMainSite();
       });
     }
   </script>
