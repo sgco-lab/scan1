@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>اسکن بارکد</title>
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <style>
+    #reader { width: 100%; max-width: 400px; margin: auto; }
+    #message { text-align: center; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <button onclick="startScanner()">اسکن بارکد</button>
+  <div id="reader" style="display:none;"></div>
+  <div id="message"></div>
+
+  <script>
+    function isMobile() {
+      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    function startScanner() {
+      if (!isMobile()) {
+        document.getElementById("message").innerText = "این قابلیت فقط در موبایل فعال است.";
+        return;
+      }
+
+      document.getElementById("reader").style.display = "block";
+      const html5QrCode = new Html5Qrcode("reader");
+
+      html5QrCode.start({ facingMode: "environment" }, {
+        fps: 10,
+        qrbox: 250
+      }, (decodedText, decodedResult) => {
+        alert(`نتیجه اسکن: ${decodedText}`);
+        html5QrCode.stop();
+      }, (errorMessage) => {
+        // نادیده گرفتن خطاهای کوچک هنگام اسکن
+      }).catch((err) => {
+        console.error("خطا در شروع اسکنر:", err);
+      });
+    }
+  </script>
+</body>
+</html>
