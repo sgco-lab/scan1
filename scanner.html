@@ -29,8 +29,9 @@
         { facingMode: "environment" },
         { fps: 10, qrbox: 250 },
         (decodedText, decodedResult) => {
-          alert(`نتیجه اسکن: ${decodedText}`);
-          html5QrCode.stop().then(goToMainSite);
+          html5QrCode.stop().then(() => {
+            window.location.href = decodedText;
+          });
         },
         (errorMessage) => {
           // خطاهای موقتی نادیده گرفته می‌شوند
