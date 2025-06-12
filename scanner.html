@@ -5,8 +5,19 @@
   <title>اسکن بارکد</title>
   <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
   <style>
-    body, html { margin: 0; padding: 0; height: 100%; background: #000; display: flex; justify-content: center; align-items: center; }
-    #reader { width: 300px; height: 300px; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #reader {
+      width: 900px;
+      height: 900px;
+    }
   </style>
 </head>
 <body>
@@ -27,7 +38,7 @@
       const html5QrCode = new Html5Qrcode("reader");
       html5QrCode.start(
         { facingMode: "environment" },
-        { fps: 10, qrbox: { width: 280, height: 280 }, aspectRatio: undefined },
+        { fps: 10, qrbox: { width: 600, height: 600 }, aspectRatio: undefined },
         (decodedText, decodedResult) => {
           html5QrCode.stop().then(() => {
             window.location.href = decodedText;
