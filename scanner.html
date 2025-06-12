@@ -9,14 +9,15 @@
       margin: 0;
       padding: 0;
       height: 100%;
+      width: 100%;
       background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
     }
     #reader {
-      width: 900px;
-      height: 900px;
+      width: 90vw;
+      height: 90vh;
     }
   </style>
 </head>
@@ -38,7 +39,7 @@
       const html5QrCode = new Html5Qrcode("reader");
       html5QrCode.start(
         { facingMode: "environment" },
-        { fps: 10, qrbox: { width: 600, height: 600 }, aspectRatio: undefined },
+        { fps: 10, qrbox: { width: 600, height: 800 }, aspectRatio: undefined },
         (decodedText, decodedResult) => {
           html5QrCode.stop().then(() => {
             window.location.href = decodedText;
